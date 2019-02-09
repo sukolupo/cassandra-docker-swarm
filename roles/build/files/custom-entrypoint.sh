@@ -9,16 +9,16 @@
 set -e
 
 ## lets look for other tasks
-cassandra_tasks="$(getent hosts tasks.cassandra | awk '{print $1}' ORS=', ' | sed s'/..$//')"
-cassandra_ip="$(hostname --all-ip-address | awk '{print $1}' ORS=', ' | sed s'/..$//')"
+cassandra_tasks=$(getent hosts tasks.cassandra | awk '{print $1}' ORS=', ' | sed s'/..$//')
+cassandra_ip=$(hostname --all-ip-address | awk '{print $1}' ORS=', ' | sed s'/..$//')
 
 # TODO: add automatic rack placement based on node counts
 
-if [ -z "$cassandra_tasks"]
+if [ -z "$cassandra_tasks" ]
 then
-    :
+    echo "First node in the cluster"
 else
-    export CASSANDRA_SEEDS="$cassandra_tasks"
+    export CASSANDRA_SEEDS=$cassandra_tasks
 fi
 
 
