@@ -1,5 +1,5 @@
-FROM {{ full_image_name }}
+FROM {{ full_official_image_name }}
 
 COPY roles/build/files/custom-entrypoint.sh /
 
-ENTRYPOINT ["custom-entrypoint.sh"]
+ENTRYPOINT ["/custom-entrypoint.sh"]

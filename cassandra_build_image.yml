@@ -1,7 +1,11 @@
 ---
 ## will kick off the build of our custom container
+## example call 
+## ansible-playbook ./cassandra_build_image.yml -i localhost, --extra-vars='new_image_tag="0.1"'
 - hosts: all
-  var:
+  connection: local
+  gather_facts: false
+  vars:
       image_tag: "{{ new_image_tag }}"
   roles:
         - build

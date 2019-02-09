@@ -8,11 +8,14 @@ yum install -y epel-release
 ## install some additional dependencies
 yum install -y yum-utils device-mapper-persistent-data lvm2 ansible python-pip git
 
+# lets upgrade pip
+pip install --upgrade pip
+
 # lets install scqlsh on each of the nodes 
 pip install cqlsh
 
 # ansible docker modules for python 2.7
-pip install docker-py
+pip install docker
 
 # lets disable swap
 swapoff -a
@@ -21,13 +24,15 @@ swapoff -a
 mkdir /home/vagrant/git
 cd /home/vagrant/git 
 
-if [ ! -d "/home/vagrant/git/cassandra-docker-swarm"]
+if [ ! -d "/home/vagrant/git/cassandra-docker-swarm" ]
 then
     git clone https://github.com/sukolupo/cassandra-docker-swarm.git
 else
     cd /home/vagrant/git/cassandra-docker-swarm
     git pull 
 fi
+
+chown -R vagrant:vagrant /home/vagrant/git
 
 #modprobe br_netfilter
 #echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
