@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
         end
 
         # lets copy the host files to each node
-        nodeconfig.vm.provision "file", source: "./setup/hosts", destination: "hosts"
+        nodeconfig.vm.provision "file", source: "./setup/hosts", destination: "/etc/hosts"
         nodeconfig.vm.provision "file", source: "~/.vagrant.d/insecure_private_key", destination: "/home/vagrant/.ssh/id_rsa"
 
         # lets install docker on each of the nodes

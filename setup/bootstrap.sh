@@ -34,5 +34,6 @@ fi
 
 chown -R vagrant:vagrant /home/vagrant/git
 
+chmod 600 /home/vagrant/.ssh/id_rsa
 #modprobe br_netfilter
 #echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
