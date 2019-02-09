@@ -1,0 +1,16 @@
+---
+
+- name: "create custom docker build file"
+  template:
+    src: roles/build/templates/Dockerfile-{{ image_name }}.j2
+    dest: Dockerfile-{{ image_name }}.j2
+
+- name: "create custom docker compose file"
+  template:
+    src: roles/build/templates/docker-compose-{{ image_name }}.yaml.j2
+    dest: docker-compose-{{ image_name }}.yaml
+
+- name: build our custom docker image
+  docker_image:
+      name: "{{ full_image_name }}" # required. Image name. Name format will be one of: name, repository/name, registry_server:port/name. When pushing or pulling an image the name can optionally include the tag by appending ':tag_name'.
+      dockerfile: "Dockerfile-{{ image_name }}" # not required. Use with state C(present) to provide an alternate name for the Dockerfile to use when building an image.

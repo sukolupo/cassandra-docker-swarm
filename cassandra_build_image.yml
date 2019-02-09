@@ -1,0 +1,7 @@
+---
+## will kick off the build of our custom container
+- hosts: all
+  var:
+      image_tag: "{{ new_image_tag }}"
+  roles:
+        - build
