@@ -4,6 +4,8 @@ This repo contains code and test files to setup cassandra using docker swarm
 ## Building your own Custom image
 Use the playbook calls below to build the docker image (if required).
 
+A prebuilt docker image can be found here https://hub.docker.com/r/sukolupo/cassandra
+
 Don't forget to call "docker login" before running the playbook, otherwise it will fail on upload.
 
 ### Example Call
