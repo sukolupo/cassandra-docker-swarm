@@ -1,0 +1,8 @@
+---
+leader:
+        hosts:
+                node1:
+workers:
+        hosts:
+                node2:
+                node3:

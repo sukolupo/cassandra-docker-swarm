@@ -1,0 +1,12 @@
+---
+## official image
+image_name: "cassandra"
+image_official_tag: "3.11.3"
+full_official_image_name: "{{ image_name }}:{{ image_official_tag }}"
+
+# custom image settings
+# these can be overridden when calling playbook
+# "https://hub.docker.com/r/sukolupo/cassandra"
+image_repo: "sukolupo"
+image_tag: "0.1"
+full_image_name: "{{ image_repo }}/{{ image_name }}:{{ image_tag }}"
