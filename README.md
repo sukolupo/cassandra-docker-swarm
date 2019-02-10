@@ -27,6 +27,8 @@ run the following to spin up the four node environment
 vagrant up
 ```
 
+As part of the setup it should also pull from this repo, so all the code is ready to go.
+
 ### The Nodes
 Master - Standalone node outside of the swarm. I use this to test external connectivity using cqlsh
 
