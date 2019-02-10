@@ -5,6 +5,8 @@
 ## this will query the hosts and looking for tasks.cassandra and 
 ## add those to the seed list
 
+sleep 5
+
 ## lets bomb out if we hit any errors
 set -e
 
@@ -18,11 +20,12 @@ cassandra_tasks=$(getent hosts tasks.cassandra | awk '{print $1}' ORS=',\n' | se
 
 if [ ! -z "$cassandra_tasks" ]
 then
-    export CASSANDRA_SEEDS=$(echo $cassandra_tasks | sed s'/,$//')
+     CASSANDRA_SEEDS=$(echo $cassandra_tasks | sed s'/,$//')
 fi
 
-#export CASSANDRA_LISTEN_ADDRESS=$cassandra_ip
-#export CASSANDRA_BROADCAST_ADDRESS=$cassandra_ip
+export CASSANDRA_SEEDS
+export CASSANDRA_LISTEN_ADDRESS=$cassandra_ip
+export CASSANDRA_BROADCAST_ADDRESS=$cassandra_ip
 
 # call the official docker entrypoint
 /docker-entrypoint.sh cassandra -f
