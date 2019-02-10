@@ -1,5 +1,5 @@
 ---
-- host: leader
+- hosts: leader
   gather_facts: false
   vars:
         advertised_ip: "10.0.0.11"
@@ -11,13 +11,18 @@
           
         - name: Extract join token
           shell: "docker swarm join-token worker | grep docker"
-          register: dockertoken 
+          register: dockertoken
+          
+        
+        - debug:
+            msg: "{{ dockertoken }}" # not required. The customized message that is printed. If omitted, prints a generic message.
 
-- host: workers
+
+- hosts: workers
   gather_facts: false
   tasks:
         - name: join the swarms
-          shell: "{{ item }}"
+          shell: "{{ item.stdout }}"
           with_items:
-            - {{ dockertoken.stdout }}
+            - "{{ hostvars[groups['leader'][0]]['dockertoken'] }}"
           
