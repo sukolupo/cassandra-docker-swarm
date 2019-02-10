@@ -41,8 +41,26 @@ Vagrant.configure("2") do |config|
         end
 
         # lets copy the host files to each node
-        nodeconfig.vm.provision "file", source: "./setup/hosts", destination: "/etc/hosts"
-        nodeconfig.vm.provision "file", source: "~/.vagrant.d/insecure_private_key", destination: "/home/vagrant/.ssh/id_rsa"
+        nodeconfig.vm.provision "file", source: "./setup/hosts", destination: "hosts"
+        #nodeconfig.vm.provision "file", source: "~/.vagrant.d/insecure_private_key", destination: "/home/vagrant/.ssh/id_rsa"
+        nodeconfig.vm.provision "file", source: "./setup/id_rsa_vagrant.pub", destination: "/home/vagrant/.ssh/id_rsa.pub"
+        nodeconfig.vm.provision "file", source: "./setup/id_rsa_vagrant", destination: "/home/vagrant/.ssh/id_rsa"
+
+        # this section from https://devops.stackexchange.com/a/1247
+        public_key = File.read("./setup/id_rsa_vagrant.pub")
+        nodeconfig.vm.provision :shell, :inline =>"
+                echo 'Copying ansible-vm public SSH Keys to the VM'
+                mkdir -p /home/vagrant/.ssh
+                chmod 700 /home/vagrant/.ssh
+                echo '#{public_key}' >> /home/vagrant/.ssh/authorized_keys
+                chmod -R 600 /home/vagrant/.ssh/authorized_keys
+                echo 'Host *' >> /home/vagrant/.ssh/config
+                echo 'StrictHostKeyChecking no' >> /home/vagrant/.ssh/config
+                echo 'UserKnownHostsFile /dev/null' >> /home/vagrant/.ssh/config
+                chmod -R 600 /home/vagrant/.ssh/config
+          ", privileged: false
+
+        ## end of section https://devops.stackexchange.com/a/1247
 
         # lets install docker on each of the nodes
         nodeconfig.vm.provision "docker"

@@ -18,7 +18,7 @@ if [ -z "$cassandra_tasks" ]
 then
     echo "First node in the cluster"
 else
-    export CASSANDRA_SEEDS=$cassandra_tasks
+    CASSANDRA_SEEDS=$cassandra_tasks
 fi
 
 

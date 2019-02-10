@@ -10,14 +10,17 @@ services:
     #  placement:
     #    constraints:
     #    - node.labels.db==cassandra1
-   # environment:
+    environment:
    #   CASSANDRA_BROADCAST_ADDRESS: tasks.cassandra
   #    CASSANDRA_SEEDS: tasks.cassandra
+       CASSANDRA_CLUSTER_NAME: cluster
+       CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
    # volumes:
    # - volume1:/var/lib/cassandra
     ports:
     - 7000
     - 9042
+    - 7199
     networks:
       cqlnet:
 

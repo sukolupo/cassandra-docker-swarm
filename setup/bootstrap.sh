@@ -28,12 +28,15 @@ if [ ! -d "/home/vagrant/git/cassandra-docker-swarm" ]
 then
     git clone https://github.com/sukolupo/cassandra-docker-swarm.git
 else
-    cd /home/vagrant/git/cassandra-docker-swarm
+    cd /home/vagrant/git/cassandra-docker-swarm 
     git pull 
 fi
 
 chown -R vagrant:vagrant /home/vagrant/git
 
+cat /home/vagrant/hosts > /etc/hosts
+
 chmod 600 /home/vagrant/.ssh/id_rsa
+#cat /home/vagrant/.ssh/id_rsa_vagrant.pub >> /home/vagrant/.ssh/authorized_keys
 #modprobe br_netfilter
 #echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
