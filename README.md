@@ -21,7 +21,7 @@ ansible-playbook ./cassandra_build_image.yml -i localhost, --extra-vars='new_ima
 ```
 
 
-## Testing using Vargant
+## Testing using Vagrant
 The repo contains all the configuration files to test. The images are based on CentOS7
 
 run the following to spin up the four node environment
