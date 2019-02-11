@@ -35,13 +35,13 @@ cd ~/git/cassandra-docker-swarm
 ```
 
 ### The Nodes
-Master - Standalone node outside of the swarm. I use this to test external connectivity using cqlsh
+* Master - Standalone node outside of the swarm. I use this to test external connectivity using cqlsh
 
-Node1 - The Leader node.
+* Node1 - The Leader node.
 
-Node2 - Worker node.
+* Node2 - Worker node.
 
-Node3 - Worker node.
+* Node3 - Worker node.
 
 SSH is configured so you shoud be able to connect between each of the nodes without using passwords.
 
