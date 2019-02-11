@@ -46,7 +46,7 @@ cd ~/git/cassandra-docker-swarm
 SSH is configured so you shoud be able to connect between each of the nodes without using passwords.
 
 ## Setting up the Swarm
-I have created a playbook to setup and configure the docker swarm, you can porvide your own invertory files to setup a swarm on any machines you like. 
+I have created a playbook to setup and configure the docker swarm, you can provide your own inventory files to setup a swarm on any machines you like. 
 
 I have provided a inventory file to work with the test vagrant environment.
 
